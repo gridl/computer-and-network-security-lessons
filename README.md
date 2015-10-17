@@ -33,6 +33,12 @@ gdb -q ./a.out
 Установить для gdb формат команд intel:
 set disassembly-flavor intel
 
+
+[Организация памяти процесса](http://habrahabr.ru/company/smart_soft/blog/185226/)
+[Путешествие по Стеку](http://habrahabr.ru/company/smart_soft/blog/234239/)
+
+
+
 ### Практические задания
 
 ##### Контрольная точка 1:
@@ -102,3 +108,5 @@ set disassembly-flavor intel
 
 [exploit-db](https://www.exploit-db.com/papers/)
 [packetstormsecurity](https://packetstormsecurity.com/files/tags/paper/)
+
+
