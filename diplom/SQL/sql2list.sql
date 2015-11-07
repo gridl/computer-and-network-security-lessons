@@ -15,7 +15,7 @@ insert into pcap_weka (id,ip_s,ip_d,ip_hlen,ip_flags,ip_ttl,ip_proto,tcp_s_port,
 
 //////////////////////////////////////
 
-/* 0) создали таблицу */
+/* 0) СЃРѕР·РґР°Р»Рё С‚Р°Р±Р»РёС†Сѓ */
 
 CREATE TABLE `time_packet` (
   `pos` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -27,11 +27,11 @@ CREATE TABLE `time_packet` (
   KEY `datetime` (`datetime`)
 ) TYPE=MyISAM;
 
-/* заполнение данными */
+/* Р·Р°РїРѕР»РЅРµРЅРёРµ РґР°РЅРЅС‹РјРё */
 
-/* заполнение временем */
+/* Р·Р°РїРѕР»РЅРµРЅРёРµ РІСЂРµРјРµРЅРµРј */
 
-/* 1) создали таблицу */
+/* 1) СЃРѕР·РґР°Р»Рё С‚Р°Р±Р»РёС†Сѓ */
 
 CREATE TABLE `pcap_weka` (
   `id` bigint(20) unsigned NOT NULL default '0',  
@@ -54,11 +54,11 @@ CREATE TABLE `pcap_weka` (
 /* 1 */
 insert into pcap_weka (id,packet_time,ip_s,ip_d,ip_flags,ip_ttl,tcp_s_port,tcp_d_port,tcp_flags,tcp_winsize,tcp_data_len) select ip.id,time_packet.packet_time,ip.s_ip,ip.d_ip,ip.flags,ip.ttl,tcp.s_port,tcp.d_port,tcp.flags,tcp.winsize,ip.len-ip.hlen*4-tcp.hlen*4  from ip, tcp,time_packet where ip.id=tcp.id and time_packet.id=tcp.id; 
 
-/* заполнили протокол */
+/* Р·Р°РїРѕР»РЅРёР»Рё РїСЂРѕС‚РѕРєРѕР» */
 
-/* 0) Создание таблицы */
+/* 0) РЎРѕР·РґР°РЅРёРµ С‚Р°Р±Р»РёС†С‹ */
 
-/* tcp + время */
+/* tcp + РІСЂРµРјСЏ */
 
 CREATE TABLE `pcap_weka` (
   `pos` bigint(20) unsigned NOT NULL AUTO_INCREMENT,  
@@ -80,7 +80,7 @@ CREATE TABLE `pcap_weka` (
   PRIMARY KEY  (`pos`)
 ) TYPE=MyISAM;
 
-/* 1) Подготовка */
+/* 1) РџРѕРґРіРѕС‚РѕРІРєР° */
 insert into pcap_weka (id,ip_s,ip_d,ip_flags,ip_ttl,tcp_s_port,tcp_d_port,tcp_winsize,tcp_data_len) select ip.id,ip.s_ip,ip.d_ip,ip.flags,ip.ttl,tcp.s_port,tcp.d_port,tcp.winsize,ip.len-ip.hlen*4-tcp.hlen*4  from ip, tcp where ip.id=tcp.id; 
 
 insert into pcap_weka (id,ip_s,ip_d,ip_flags,ip_ttl,tcp_s_port,tcp_d_port,tcp_winsize,tcp_data_len) select ip.id,ip.s_ip,ip.d_ip,ip.flags,ip.ttl,tcp.s_port,tcp.d_port,tcp.winsize,ip.len-ip.hlen*4-tcp.hlen*4  from ip, tcp where ip.id=tcp.id; 
