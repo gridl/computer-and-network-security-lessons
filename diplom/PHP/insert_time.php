@@ -1,6 +1,6 @@
 <?php
 //
-// Çàïîëíèëè òàáëèöó time_packet, ãäå áûëî ïóñòîå ïîëå ñ âðåìåííûìè îòìåòêàìè 
+// Ð—Ð°Ð¿Ð¾Ð»Ð½Ð¸Ð»Ð¸ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ time_packet, Ð³Ð´Ðµ Ð±Ñ‹Ð»Ð¾ Ð¿ÑƒÑÑ‚Ð¾Ðµ Ð¿Ð¾Ð»Ðµ Ñ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ð¼Ð¸ Ð¾Ñ‚Ð¼ÐµÑ‚ÐºÐ°Ð¼Ð¸
 // 
 $con = @mysql_connect("localhost","root","toor123");
 if (!$con)
@@ -8,23 +8,23 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
  }
 mysql_select_db("pcap2mysql_data", $con)
-	or die("Îøèáêà âûáîðà áàçû äàííûõ");
+	or die("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…");
 
 $result_id = mysql_query("select * from time_packet")
-	or die("Íåëüçÿ âûïîëíèòü çàïðîñ");
+	or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ");
 
 // ----------------------------------------
 
-$i=1; 	    // èíêðåìåíòíûé ñ÷åò÷èê 
+$i=1; 	    // Ð¸Ð½ÐºÑ€ÐµÐ¼ÐµÐ½Ñ‚Ð½Ñ‹Ð¹ ÑÑ‡ÐµÑ‚Ñ‡Ð¸Ðº
 while ($row = mysql_fetch_row($result_id)) {
    	
-	if ($i%2){ // òåêóùåå çíà÷åíèå - íå÷åòíîå
+	if ($i%2){ // Ñ‚ÐµÐºÑƒÑ‰ÐµÐµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ - Ð½ÐµÑ‡ÐµÑ‚Ð½Ð¾Ðµ
 	
 		$tv_sec1=$row[2];
 		$tv_usec1=$row[3];	
 	}
 		
-	if (!($i%2)){ // òåêóùåå çíà÷åíèå - ÷åòíîå
+	if (!($i%2)){ // Ñ‚ÐµÐºÑƒÑ‰ÐµÐµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ - Ñ‡ÐµÑ‚Ð½Ð¾Ðµ
 		
 		$tv_sec2=$row[2];
 		$tv_usec2=$row[3];		
@@ -44,7 +44,7 @@ while ($row = mysql_fetch_row($result_id)) {
 		}
 			
 		$query=sprintf("update time_packet set time_packet.packet_time=%d where time_packet.pos=%d",$res*1000, $i-1);				
-		mysql_query($query) or die("Íåëüçÿ âûïîëíèòü çàïðîñ 1"); 
+		mysql_query($query) or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ 1"); 
    	}           
    $i++;
 }
@@ -61,10 +61,10 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
  }
 mysql_select_db("pcap2mysql_data", $con)
-	or die("Îøèáêà âûáîðà áàçû äàííûõ");
+	or die("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…");
 
 $result_id = mysql_query("select * from time_packet")
-	or die("Íåëüçÿ âûïîëíèòü çàïðîñ");
+	or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ");
 
 // ----------------------------------------
 $i=1;
@@ -73,13 +73,13 @@ $flag_space=0;
 while ($row = mysql_fetch_row($result_id)) {
    	
   if ($flag_space==1) {			
-	if (!($i%2)){ // òåêóùåå çíà÷åíèå - ÷åòíîå
+	if (!($i%2)){ // Ñ‚ÐµÐºÑƒÑ‰ÐµÐµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ - Ñ‡ÐµÑ‚Ð½Ð¾Ðµ
 	
 		$tv_sec1=$row[2];
 		$tv_usec1=$row[3];	
 	}
 		
-	if ($i%2){ // òåêóùåå çíà÷åíèå - íå÷åòíîå
+	if ($i%2){ // Ñ‚ÐµÐºÑƒÑ‰ÐµÐµ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ - Ð½ÐµÑ‡ÐµÑ‚Ð½Ð¾Ðµ
 		
 		$tv_sec2=$row[2];
 		$tv_usec2=$row[3];		
@@ -99,7 +99,7 @@ while ($row = mysql_fetch_row($result_id)) {
 		}
 				
 		$query=sprintf("update time_packet set time_packet.packet_time=%d where time_packet.pos=%d",$res*1000, $i-1);				
-		mysql_query($query) or die("Íåëüçÿ âûïîëíèòü çàïðîñ 1"); 
+		mysql_query($query) or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ 1"); 
    	}           
      }	
    	
@@ -110,7 +110,7 @@ while ($row = mysql_fetch_row($result_id)) {
 // ----------------------------------------
 
 // 
-// Óäàëèòü ïîñëåäíþþ ñòðîêó ñ íóëåì
+// Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÑŽÑŽ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ñ Ð½ÑƒÐ»ÐµÐ¼
 // 
 
 mysql_free_result($result_id);

@@ -1,7 +1,7 @@
 <?php
 
 //
-// 2) Заполнили поле с временными отметками 
+// 2) Р—Р°РїРѕР»РЅРёР»Рё РїРѕР»Рµ СЃ РІСЂРµРјРµРЅРЅС‹РјРё РѕС‚РјРµС‚РєР°РјРё
 // 
 
 $con = @mysql_connect("localhost","root","toor123");
@@ -10,23 +10,23 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
  }
 mysql_select_db("pcap2mysql_data", $con)
-	or die("Ошибка выбора базы данных");
+	or die("РћС€РёР±РєР° РІС‹Р±РѕСЂР° Р±Р°Р·С‹ РґР°РЅРЅС‹С…");
 
 $result_id = mysql_query("select * from pcap_weka")
-	or die("Нельзя выполнить запрос");
+	or die("РќРµР»СЊР·СЏ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РїСЂРѕСЃ");
 
 // ----------------------------------------
 
-$i=1; 	    // инкрементный счетчик 
+$i=1; 	    // РёРЅРєСЂРµРјРµРЅС‚РЅС‹Р№ СЃС‡РµС‚С‡РёРє
 while ($row = mysql_fetch_row($result_id)) {
    	
-	if ($i%2){ // текущее значение - нечетное
+	if ($i%2){ // С‡РµС‚РЅРѕРµ
 	
 		$tv_sec1=$row[3];
 		$tv_usec1=$row[4];	
 	}
 		
-	if (!($i%2)){ // текущее значение - четное
+	if (!($i%2)){ 
 		
 		$tv_sec2=$row[3];
 		$tv_usec2=$row[4];		
@@ -41,7 +41,7 @@ while ($row = mysql_fetch_row($result_id)) {
 		
 		$res=$tv_sec*1000+$tv_usec/1000;		
 		$query=sprintf("update pcap_weka set pcap_weka.packet_time=%d where pcap_weka.pos=%d",$res*1000, $i-1);				
-		mysql_query($query) or die("Нельзя выполнить запрос 1"); 
+		mysql_query($query) or die("РќРµР»СЊР·СЏ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РїСЂРѕСЃ 1"); 
    	}           
    $i++;
 }
@@ -58,10 +58,10 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
  }
 mysql_select_db("pcap2mysql_data", $con)
-	or die("Ошибка выбора базы данных");
+	or die("РћС€РёР±РєР° РІС‹Р±РѕСЂР° Р±Р°Р·С‹ РґР°РЅРЅС‹С…");
 
 $result_id = mysql_query("select * from pcap_weka")
-	or die("Нельзя выполнить запрос");
+	or die("РќРµР»СЊР·СЏ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РїСЂРѕСЃ");
 
 // ----------------------------------------
 $i=1;
@@ -70,13 +70,13 @@ $flag_space=0;
 while ($row = mysql_fetch_row($result_id)) {
    	
   if ($flag_space==1) {			
-	if (!($i%2)){ // текущее значение - четное
+	if (!($i%2)){ // С‡РµС‚РЅРѕРµ
 	
 		$tv_sec1=$row[3];
 		$tv_usec1=$row[4];	
 	}
 		
-	if ($i%2){ // текущее значение - нечетное
+	if ($i%2){ 
 		
 		$tv_sec2=$row[3];
 		$tv_usec2=$row[4];		
@@ -91,7 +91,7 @@ while ($row = mysql_fetch_row($result_id)) {
 		
 		$res=$tv_sec*1000+$tv_usec/1000;		
 		$query=sprintf("update pcap_weka set pcap_weka.packet_time=%d where pcap_weka.pos=%d",$res*1000, $i-1);				
-		mysql_query($query) or die("Нельзя выполнить запрос 1"); 
+		mysql_query($query) or die("РќРµР»СЊР·СЏ РІС‹РїРѕР»РЅРёС‚СЊ Р·Р°РїСЂРѕСЃ 1"); 
    	}           
      }	
    	
@@ -102,7 +102,7 @@ while ($row = mysql_fetch_row($result_id)) {
 // ----------------------------------------
 
 // 
-// Удалить последнюю строку с нулем
+// РЈРґР°Р»РёС‚СЊ РїРѕСЃР»РµРґРЅСЋСЋ СЃС‚СЂРѕРєСѓ СЃ РЅСѓР»РµРј
 // 
 
 mysql_free_result($result_id);

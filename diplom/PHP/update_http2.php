@@ -1,17 +1,17 @@
 <?php
-// Óñòàíîâêà ñîåäèíåíèÿ ñ áàçîé äàííûõ
+// Ð£ÑÑ‚Ð°Ð½Ð¾Ð²ÐºÐ° ÑÐ¾ÐµÐ´Ð¸Ð½ÐµÐ½Ð¸Ñ Ñ Ð±Ð°Ð·Ð¾Ð¹ Ð´Ð°Ð½Ð½Ñ‹Ñ…
 $con = @mysql_connect($host,$user,$psw);
 if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
  }
-// Âûáîð áàçû äàííûõ
+// Ð’Ñ‹Ð±Ð¾Ñ€ Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…
  mysql_select_db("pcap2mysql_data", $con)
-	or die("Îøèáêà âûáîðà áàçû äàííûõ");
+	or die("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…");
 
-// Âûïîëíåíèå çàïðîñà
+// Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ðµ Ð·Ð°Ð¿Ñ€Ð¾ÑÐ°
 $result_id = mysql_query("select * from pcap_weka")
-	or die("Íåëüçÿ âûïîëíèòü çàïðîñ");
+	or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ");
 
 $flag1=0; 
 
@@ -22,16 +22,16 @@ while ($row = mysql_fetch_row($result_id)) {
 				$flag1=1; 
 							
 				$query=sprintf("update pcap_weka set pcap_weka.tcp_flow_dir=1,  pcap_weka.app_proto=1, pcap_weka.app_proto_name='http' where pcap_weka.id=%d",$row[0]);
-				mysql_query($query) or die("Íåëüçÿ âûïîëíèòü çàïðîñ, 1"); 
+				mysql_query($query) or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ, 1"); 
 			}else{
 				$query=sprintf("update pcap_weka set pcap_weka.tcp_flow_dir=1,  pcap_weka.app_proto=1, pcap_weka.app_proto_name='http' where pcap_weka.id=%d",$row[0]);
-				mysql_query($query) or die("Íåëüçÿ âûïîëíèòü çàïðîñ, 2"); 
+				mysql_query($query) or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ, 2"); 
 			}			
 		}
 		if ($row[7]==80){ 
 			if($flag1==1){
 				$query=sprintf("update pcap_weka set pcap_weka.tcp_flow_dir=2,  pcap_weka.app_proto=1, pcap_weka.app_proto_name='http' where pcap_weka.id=%d",$row[0]);
-				mysql_query($query) or die("Íåëüçÿ âûïîëíèòü çàïðîñ, 3"); 
+				mysql_query($query) or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ, 3"); 
 			}
 		} 	
  	} 	 		

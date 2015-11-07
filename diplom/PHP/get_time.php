@@ -1,7 +1,7 @@
 <?php
 
 //
-// Çàïîëíèëè òàáëèöó time_packet ñ âîçìîæíîñòüþ äàëüíåéøåãî äîáàâëåíèÿ âðåìåííûõ îòìåòîê
+// Ð—Ð°Ð¿Ð¾Ð»Ð½Ð¸Ð»Ð¸ Ñ‚Ð°Ð±Ð»Ð¸Ñ†Ñƒ time_packet Ñ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ÑÑ‚ÑŒÑŽ Ð´Ð°Ð»ÑŒÐ½ÐµÐ¹ÑˆÐµÐ³Ð¾ Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð½Ñ‹Ñ… Ð¾Ñ‚Ð¼ÐµÑ‚Ð¾Ðº
 // 
 
 $con = @mysql_connect("localhost","root","toor123");
@@ -10,20 +10,20 @@ if (!$con)
 	die('Could not connect: ' . mysql_error());
  }
 mysql_select_db("pcap2mysql_data", $con)
-	or die("Îøèáêà âûáîðà áàçû äàííûõ");
+	or die("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ñ‹Ð±Ð¾Ñ€Ð° Ð±Ð°Ð·Ñ‹ Ð´Ð°Ð½Ð½Ñ‹Ñ…");
 
 $result_id = mysql_query("select * from pcap")
-	or die("Íåëüçÿ âûïîëíèòü çàïðîñ");
+	or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ");
 
-//$count=1; // èíêðåìåíòíûé ñ÷åò÷èê 
+//$count=1; // Ð¸Ð½ÐºÑ€ÐµÐ¼ÐµÐ½Ñ‚Ð½Ñ‹Ð¹ ÑÑ‡ÐµÑ‚Ñ‡Ð¸Ðº 
 
 while ($row = mysql_fetch_row($result_id)) {			
 		
 		//$query=sprintf("insert into pcap_weka (pcap_weka.datetime, pcap_weka.usec) values (%d,%d)",$row[1], $row[2]);
-		//mysql_query($query) or die("Íåëüçÿ âûïîëíèòü çàïðîñ 1"); 								
+		//mysql_query($query) or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ 1"); 								
 
 		$query=sprintf("insert into time_packet (time_packet.id, time_packet.datetime, time_packet.usec) values (%d,%d,%d)",$row[0],$row[1], $row[2]);
-		mysql_query($query) or die("Íåëüçÿ âûïîëíèòü çàïðîñ 1"); 								
+		mysql_query($query) or die("ÐÐµÐ»ÑŒÐ·Ñ Ð²Ñ‹Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ Ð·Ð°Ð¿Ñ€Ð¾Ñ 1"); 								
 
 //		$count++;
 }
